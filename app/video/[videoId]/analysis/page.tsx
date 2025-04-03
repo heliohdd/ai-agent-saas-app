@@ -2,7 +2,7 @@
 
 // import { createOrGetVideo } from "@/actions/createOrGetVideo";
 // import AiAgentChat from "@/components/AiAgentChat";
-// import ThumbnailGeneration from "@/components/ThumbnailGeneration";
+import ThumbnailGeneration from "@/components/ThumbnailGeneration";
 // import TitleGenerations from "@/components/TitleGenerations";
 // import Transcription from "@/components/Transcription";
 import Usage from "@/components/Usage";
@@ -87,7 +87,7 @@ function AnalysisPage() {
           <YoutubeVideoDetails videoId={videoId} />
 
           {/* Thumbnail Generation */}
-          {/* TODO          <ThumbnailGeneration videoId={videoId} /> */}
+          <ThumbnailGeneration videoId={videoId} />
 
           {/* Title Generation */}
           {/* TODO          <TitleGenerations videoId={videoId} /> */}
