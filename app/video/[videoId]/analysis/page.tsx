@@ -2,17 +2,16 @@
 
 // import { createOrGetVideo } from "@/actions/createOrGetVideo";
 // import AiAgentChat from "@/components/AiAgentChat";
-import ThumbnailGeneration from "@/components/ThumbnailGeneration";
-// import TitleGenerations from "@/components/TitleGenerations";
-// import Transcription from "@/components/Transcription";
-import Usage from "@/components/Usage";
 import YoutubeVideoDetails from "@/components/YoutubeVideoDetails";
+import ThumbnailGeneration from "@/components/ThumbnailGeneration";
+import TitleGenerations from "@/components/TitleGenerations";
+import Transcription from "@/components/Transcription";
+import Usage from "@/components/Usage";
 // import { Doc } from "@/convex/_generated/dataModel";
 import { FeatureFlag } from "@/app/features/flags";
 import { useUser } from "@clerk/nextjs";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import TitleGenerations from "@/components/TitleGenerations";
+// import { useEffect, useState } from "react";
 
 function AnalysisPage() {
   const params = useParams<{ videoId: string }>();
@@ -94,7 +93,7 @@ function AnalysisPage() {
           <TitleGenerations videoId={videoId} />
 
           {/* Transcription */}
-          {/* TODO          <Transcription videoId={videoId} /> */}
+          <Transcription videoId={videoId} />
         </div>
 
         {/* Right Side */}
