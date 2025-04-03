@@ -12,6 +12,7 @@ import { FeatureFlag } from "@/app/features/flags";
 import { useUser } from "@clerk/nextjs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import TitleGenerations from "@/components/TitleGenerations";
 
 function AnalysisPage() {
   const params = useParams<{ videoId: string }>();
@@ -90,7 +91,7 @@ function AnalysisPage() {
           <ThumbnailGeneration videoId={videoId} />
 
           {/* Title Generation */}
-          {/* TODO          <TitleGenerations videoId={videoId} /> */}
+          <TitleGenerations videoId={videoId} />
 
           {/* Transcription */}
           {/* TODO          <Transcription videoId={videoId} /> */}
