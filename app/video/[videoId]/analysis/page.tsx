@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 function AnalysisPage() {
   const params = useParams<{ videoId: string }>();
   const { videoId } = params;
+
   const { user } = useUser();
   // const [video, setVideo] = useState<Doc<"videos"> | null | undefined>(
   //   undefined
@@ -83,7 +84,7 @@ function AnalysisPage() {
           </div>
 
           {/* Youtube video details */}
-          {/* <YoutubeVideoDetails videoId={videoId} /> */}
+          <YoutubeVideoDetails videoId={videoId} />
 
           {/* Thumbnail Generation */}
           {/* TODO          <ThumbnailGeneration videoId={videoId} /> */}
