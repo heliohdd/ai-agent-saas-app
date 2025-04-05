@@ -4,10 +4,10 @@ import { streamText, tool } from "ai";
 import { currentUser } from "@clerk/nextjs/server";
 import { getVideoDetails } from "@/actions/getVideoDetails";
 import fetchTranscript from "@/tools/fetchTranscript";
-// import { generateImage } from "@/tools/generateImage";
-// import { z } from "zod";
-// import { getVideoIdFromUrl } from "@/lib/getVideoIdFromUrl";
-// import generateTitle from "@/tools/generateTitle";
+import { generateImage } from "@/tools/generateImage";
+import { z } from "zod";
+import { getVideoIdFromUrl } from "@/lib/getVideoIdFromUrl";
+import generateTitle from "@/tools/generateTitle";
 
 const anthropic = createAnthropic({
   apiKey: process.env.CLAUDE_API_KEY,
@@ -16,8 +16,7 @@ const anthropic = createAnthropic({
   },
 });
 
-// const model = anthropic("claude-3-7-sonnet-20250219");
-const model = anthropic("claude-3-5-sonnet-20250219");
+const model = anthropic("claude-3-7-sonnet-20250219");
 
 export async function POST(req: Request) {
   const { messages, videoId } = await req.json();
@@ -39,28 +38,28 @@ export async function POST(req: Request) {
     messages: [{ role: "system", content: systemMessage }, ...messages],
     tools: {
       fetchTranscript: fetchTranscript,
-      //   generateTitle: generateTitle,
-      //   generateImage: generateImage(videoId, user.id),
-      //   getVideoDetails: tool({
-      //     description: "Get the details of a YouTube video",
-      //     parameters: z.object({
-      //       videoId: z.string().describe("The video ID to get the details for"),
-      //     }),
-      //     execute: async ({ videoId }) => {
-      //       const videoDetails = await getVideoDetails(videoId);
-      //       return { videoDetails };
-      //     },
-      //   }),
-      //   extractVideoId: tool({
-      //     description: "Extract the video ID from a URL",
-      //     parameters: z.object({
-      //       url: z.string().describe("The URL to extract the video ID from"),
-      //     }),
-      //     execute: async ({ url }) => {
-      //       const videoId = await getVideoIdFromUrl(url);
-      //       return { videoId };
-      //     },
-      //   }),
+      generateTitle: generateTitle,
+      generateImage: generateImage(videoId, user.id),
+      getVideoDetails: tool({
+        description: "Get the details of a YouTube video",
+        parameters: z.object({
+          videoId: z.string().describe("The video ID to get the details for"),
+        }),
+        execute: async ({ videoId }) => {
+          const videoDetails = await getVideoDetails(videoId);
+          return { videoDetails };
+        },
+      }),
+      extractVideoId: tool({
+        description: "Extract the video ID from a URL",
+        parameters: z.object({
+          url: z.string().describe("The URL to extract the video ID from"),
+        }),
+        execute: async ({ url }) => {
+          const videoId = await getVideoIdFromUrl(url);
+          return { videoId };
+        },
+      }),
     },
   });
 

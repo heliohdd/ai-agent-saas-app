@@ -7,7 +7,7 @@ import { useSchematicFlag } from "@schematichq/schematic-react";
 import { FeatureFlag } from "@/features/flags";
 import { BotIcon, ImageIcon, LetterText, PenIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
-// import { toast } from "sonner";
+import { toast } from "sonner";
 
 interface ToolInvocation {
   toolCallId: string;
@@ -61,25 +61,25 @@ function AiAgentChat({ videoId }: { videoId: string }) {
 
     switch (status) {
       case "submitted":
-        // toastId = toast("Agent is thinking...", {
-        //   id: toastId,
-        //   icon: <BotIcon className="w-4 h-4" />,
-        // });
+        toastId = toast("Agent is thinking...", {
+          id: toastId,
+          icon: <BotIcon className="w-4 h-4" />,
+        });
         break;
       case "streaming":
-        // toastId = toast("Agent is replying...", {
-        //   id: toastId,
-        //   icon: <BotIcon className="w-4 h-4" />,
-        // });
+        toastId = toast("Agent is replying...", {
+          id: toastId,
+          icon: <BotIcon className="w-4 h-4" />,
+        });
         break;
       case "error":
-        // toastId = toast("Whoops! Something went wrong, please try again.", {
-        //   id: toastId,
-        //   icon: <BotIcon className="w-4 h-4" />,
-        // });
+        toastId = toast("Whoops! Something went wrong, please try again.", {
+          id: toastId,
+          icon: <BotIcon className="w-4 h-4" />,
+        });
         break;
       case "ready":
-        // toast.dismiss(toastId);
+        toast.dismiss(toastId);
 
         break;
     }

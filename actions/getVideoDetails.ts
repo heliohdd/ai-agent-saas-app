@@ -19,6 +19,7 @@ export async function getVideoDetails(videoId: string) {
     });
 
     const videoDetails = videoResponse.data.items?.[0];
+    console.log("Video Details now::: ", videoDetails);
 
     if (!videoDetails) throw new Error("Video not found");
 

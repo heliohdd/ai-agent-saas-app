@@ -4,7 +4,7 @@ import { FeatureFlag } from "@/features/flags";
 import { useSchematicEntitlement } from "@schematichq/schematic-react";
 import { useCallback, useEffect, useState } from "react";
 import Usage from "./Usage";
-// import { getYoutubeTranscript } from "@/actions/getYoutubeTranscript";
+import { getYoutubeTranscript } from "@/actions/getYoutubeTranscript";
 
 interface TranscriptEntry {
   text: string;
@@ -28,9 +28,9 @@ function Transcription({ videoId }: { videoId: string }) {
         return;
       }
 
-      //  TODO: # const result = await getYoutubeTranscript(videoId);
+      const result = await getYoutubeTranscript(videoId);
 
-      // TODO: # setTranscript(result);
+      setTranscript(result);
     },
     [featureUsageExceeded]
   );
